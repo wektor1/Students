@@ -13,6 +13,5 @@ void addStudent(std::map<int, Student>& map_student) {
     std::cout<<"Podaj index: ";
     std::cin>>index;
 
-    Student* p_student=new Student(index,surname,name);
-    map_student.insert (std::pair <int,Student> (p_student->getIndex(),* p_student));
+    map_student.insert (std::pair <int,Student> (index, Student(index,surname,name)));
 }
