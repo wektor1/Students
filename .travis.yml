@@ -1,4 +1,4 @@
-install: make get-deps
+os: linux
 language: cpp
 compiler: gcc
 
