@@ -1,6 +1,7 @@
 #include<iostream>
 #include"showMenu.hpp"
 #include"Student.hpp"
+#include"ListFunction.hpp"
 #include<map>
 
 int main() {
@@ -14,7 +15,7 @@ int main() {
                                 loop=0;
                                 break;
                         case 1:
-                        //	addStudent(map_students);
+                                addStudent(map_students);
                                 break;
                         case 2:
                         //	deleteStudent(map_students);
