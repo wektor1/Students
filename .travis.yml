@@ -1,6 +1,4 @@
-os: linux 
+compiler: clang
 language: cpp
-compiler: gcc
-
-script:
-	- make
+os: linux
+script: make
