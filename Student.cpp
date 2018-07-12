@@ -1,12 +1,13 @@
 #include "Student.hpp"
+#include <string>
 
-void Student::Student(int index,std::string surname, std::string name) {
+Student::Student(int index,std::string surname, std::string name) {
     m_index=index;
     m_surname=surname;
     m_name=name;
 }
 
-void Student::~Student() {}
+Student::~Student() {}
 
 void Student::setIndex(int index) {
     m_index=index;

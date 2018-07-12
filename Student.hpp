@@ -1,4 +1,5 @@
 #pragma once
+#include <string>
 
 class Student {
 private:
@@ -6,8 +7,8 @@ private:
     std::string m_surname;
     std::string m_name;
 public:
-    void Student(int index,std::string surname,std::string name);
-    void ~Student();
+    Student(int index,std::string surname,std::string name);
+    ~Student();
 
     void setIndex(int index);
     void setName(std::string name);
