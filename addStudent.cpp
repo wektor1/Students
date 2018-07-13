@@ -18,7 +18,7 @@ void addStudent(std::map<int, Student> &map_student) {
       std::pair<int, Student>(index, Student(index, surname, name)));
   if (inserted.second == false) {
     std::cout << "Student z podanym indexem już istnieje" << std::endl;
-    std::cin.get();
+    std::cin.ignore();
     std::cin.get();
   }
 }
