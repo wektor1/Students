@@ -11,7 +11,6 @@ int main() {
   std::map<int, Student> map_students;
   int loop = 1, t = -1;
   while (loop == 1) {
-    system("clear");
     t = showMenu();
     system("clear");
     switch (t) {

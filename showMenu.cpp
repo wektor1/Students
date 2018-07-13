@@ -1,9 +1,11 @@
 #include "showMenu.hpp"
 #include <iostream>
+#include <stdlib.h>
 
 int showMenu() {
   int t = -1;
   do {
+    system("clear");
     std::cout << "1 - Dodaj studenta  \n" <<
                  "2 - Usun studenta  \n" <<
                  "3 - Wyswietl wszystkich studentow \n" <<
