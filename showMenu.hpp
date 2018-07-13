@@ -1,6 +1,6 @@
 #pragma once
 
 
-int showMenu();
+char showMenu();
 
 

@@ -2,8 +2,8 @@
 #include <iostream>
 #include <stdlib.h>
 
-int showMenu() {
-  int t = -1;
+char showMenu() {
+ char t = -1;
   do {
     system("clear");
     std::cout << "1 - Dodaj studenta  \n" <<
@@ -12,7 +12,7 @@ int showMenu() {
                  "0 - Wyjscie z programu \n" <<
                  "Co chcesz robic: ";
     std::cin >> t;
-  } while (t < 0 || t > 3);
+  } while (t < '0' || t > '3');
   return t;
 }
 
