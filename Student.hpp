@@ -3,19 +3,19 @@
 
 class Student {
 private:
-    int m_index;
-    std::string m_surname;
-    std::string m_name;
+  int m_index;
+  std::string m_surname;
+  std::string m_name;
+
 public:
-    Student(int index,std::string surname,std::string name);
-    ~Student();
+  Student(int index, std::string surname, std::string name);
+  ~Student();
 
-    void setIndex(int index);
-    void setName(std::string name);
-    void setSurname(std::string surname);
+  void setIndex(int index);
+  void setName(std::string name);
+  void setSurname(std::string surname);
 
-    int getIndex();
-    std::string getSurname();
-    std::string getName();
+  int getIndex();
+  std::string getSurname();
+  std::string getName();
 };
-
