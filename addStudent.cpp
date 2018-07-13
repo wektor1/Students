@@ -13,6 +13,12 @@ void addStudent(std::map<int, Student> &map_student) {
   std::cout << "Podaj index: ";
   std::cin >> index;
 
-  map_student.insert(
+  std::pair<std::map<int, Student>::iterator, bool> inserted;
+  inserted = map_student.insert(
       std::pair<int, Student>(index, Student(index, surname, name)));
+  if (inserted.second == false) {
+    std::cout << "Student z podanym indexem już istnieje" << std::endl;
+    std::cin.get();
+    std::cin.get();
+  }
 }
