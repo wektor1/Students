@@ -1,5 +1,6 @@
-#include "addStudent.hpp"
 #include "Student.hpp"
+#include "addStudent.hpp"
+#include "deleteStudent.hpp"
 #include "showMenu.hpp"
 #include "showStudents.hpp"
 #include <iostream>
@@ -21,7 +22,7 @@ int main() {
       addStudent(map_students);
       break;
     case 2:
-      //	deleteStudent(map_students);
+      deleteStudent(map_students);
       break;
     case 3:
       showStudents(map_students);
