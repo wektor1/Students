@@ -3,8 +3,12 @@
 #include <iostream>
 
 void deleteStudent(std::map<int, Student> &map_student) {
-  std::cout << "Naciśnij enter, by podać index.\n\n";
   showStudents(map_student);
+  if(map_student.empty()) {
+    std::cin.ignore();
+    std::cin.get();
+    return;
+  }
   std::cout << "Podaj numer indeksu studenta: ";
   int index;
   std::cin >> index;
