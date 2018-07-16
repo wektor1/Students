@@ -12,6 +12,7 @@ char showMenu() {
                  "0 - Wyjscie z programu \n" <<
                  "Co chcesz robic: ";
     std::cin >> t;
+    std::cin.ignore(10, '\n');
   } while (t < '0' || t > '3');
   return t;
 }

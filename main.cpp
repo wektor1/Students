@@ -26,7 +26,6 @@ int main() {
       break;
     case '3':
       showStudents(map_students);
-      std::cin.ignore();
       std::cin.get();
       break;
     }
