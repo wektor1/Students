@@ -12,11 +12,11 @@ void addStudent(std::map<int, Student> &map_student) {
   std::getline(std::cin, surname);
   std::cout << "Podaj index: ";
   std::cin >> index;
-  while (!std::cin) {
+  while (!std::cin || index < 0) {
     std::cin.clear();
     std::cin.sync();
-    std::cin.ignore(15,'\n');
-    std::cout << "\nPodany index nie jest liczbą!\nPodaj index: ";
+    std::cin.ignore(15, '\n');
+    std::cout << "\nPodany index jest niepoprawny!\nPodaj index: ";
     std::cin >> index;
   }
 
@@ -25,7 +25,7 @@ void addStudent(std::map<int, Student> &map_student) {
       std::pair<int, Student>(index, Student(index, surname, name)));
   if (inserted.second == false) {
     std::cout << "Student z podanym indexem już istnieje" << std::endl;
-    std::cin.ignore(15,'\n');
+    std::cin.ignore(15, '\n');
     std::cin.get();
   }
 }
