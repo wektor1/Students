@@ -1,31 +1,27 @@
-#include "Student.hpp"
-#include "addStudent.hpp"
-#include "deleteStudent.hpp"
-#include "showMenu.hpp"
-#include "showStudents.hpp"
+#include "DataBase.hpp"
 #include <iostream>
-#include <map>
 #include <stdlib.h>
 
 int main() {
-  std::map<int, Student> map_students;
+  // std::map<int, Student> map_students;
+  DataBase students_list;
   int loop = 1;
   char t = 'm';
   while (loop == 1) {
-    t = showMenu();
+    t = students_list.showMenu();
     system("clear");
     switch (t) {
     case '0':
       loop = 0;
       break;
     case '1':
-      addStudent(map_students);
+      students_list.addStudent();
       break;
     case '2':
-      deleteStudent(map_students);
+      students_list.deleteStudent();
       break;
     case '3':
-      showStudents(map_students);
+      students_list.showStudents();
       std::cin.get();
       break;
     }
