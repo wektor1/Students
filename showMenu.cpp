@@ -3,7 +3,7 @@
 #include <stdlib.h>
 
 char showMenu() {
- char t = -1;
+ char t = '-';
   do {
     system("clear");
     std::cout << "1 - Dodaj studenta  \n" <<

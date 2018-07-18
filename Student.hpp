@@ -15,7 +15,7 @@ public:
   void setName(std::string name);
   void setSurname(std::string surname);
 
-  int getIndex();
-  std::string getSurname();
-  std::string getName();
+  int getIndex() const;
+  std::string getSurname() const;
+  std::string getName() const;
 };

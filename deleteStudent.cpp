@@ -5,7 +5,7 @@
 void deleteStudent(std::map<int, Student> &map_student) {
   showStudents(map_student);
   if (map_student.empty()) {
-    std::cin.ignore();
+  //  std::cin.ignore();
     std::cin.get();
     return;
   }

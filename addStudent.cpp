@@ -5,11 +5,14 @@
 void addStudent(std::map<int, Student> &map_student) {
   int index;
   std::string name, surname;
-  std::cout << "Podaj imie studenta: ";
-  std::cin.get();
-  std::getline(std::cin, name);
-  std::cout << "Podaj nazwisko studenta: ";
-  std::getline(std::cin, surname);
+  while(name.empty()) { 
+    std::cout << "Podaj imie studenta: ";
+    std::getline(std::cin, name);
+  }
+  while(surname.empty()) { 
+    std::cout << "Podaj nazwisko studenta: ";
+    std::getline(std::cin, surname);
+  }
   std::cout << "Podaj index: ";
   std::cin >> index;
   while (!std::cin || index < 0) {
