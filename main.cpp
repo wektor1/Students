@@ -3,7 +3,6 @@
 #include <stdlib.h>
 
 int main() {
-  // std::map<int, Student> map_students;
   DataBase students_list;
   int loop = 1;
   char t = 'm';

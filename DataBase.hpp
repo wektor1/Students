@@ -8,8 +8,8 @@ class DataBase {
 public:
   DataBase();
   ~DataBase();
-  char showMenu();
+  char showMenu() const;
   void addStudent();
   void deleteStudent();
-  void showStudents();
+  void showStudents() const;
 };

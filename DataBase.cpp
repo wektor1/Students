@@ -8,7 +8,7 @@ DataBase::DataBase() {}
 
 DataBase::~DataBase() {}
 
-char DataBase::showMenu() {
+char DataBase::showMenu() const {
   char t = '-';
   do {
     system("clear");
@@ -57,7 +57,6 @@ void DataBase::addStudent() {
 void DataBase::deleteStudent() {
   showStudents();
   if (map_students.empty()) {
-    //  std::cin.ignore();
     std::cin.get();
     return;
   }
@@ -68,7 +67,7 @@ void DataBase::deleteStudent() {
     std::cin.clear();
     std::cin.sync();
     std::cin.ignore(15, '\n');
-    std::cout << "\nPodany index nie jest liczbą!\nPodaj index: ";
+    std::cout << "\nPodany index nie jest liczba!\nPodaj index: ";
     std::cin >> index;
   }
   std::map<int, Student>::iterator it_delete;
@@ -83,7 +82,7 @@ void DataBase::deleteStudent() {
   std::cin.get();
 }
 
-void DataBase::showStudents() {
+void DataBase::showStudents() const {
   if (map_students.empty()) {
     std::cout << "Baza studentow jest pusta" << std::endl;
     return;
@@ -93,7 +92,7 @@ void DataBase::showStudents() {
   std::cout.fill('=');
   std::cout << std::setw(60) << "=" << std::endl;
   std::cout.fill(' ');
-  for (std::map<int, Student>::iterator itr = map_students.begin();
+  for (std::map<int, Student>::const_iterator itr = map_students.begin();
        itr != map_students.end(); itr++) {
     std::cout << std::left << std::setw(20) << (itr->second).getIndex()
               << std::setw(20) << (itr->second).getName() << std::setw(20)
