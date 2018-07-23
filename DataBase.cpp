@@ -44,19 +44,24 @@ void DataBase::addStudent() {
     std::cin >> index;
   }
 
-  std::pair<std::map<int, Student>::iterator, bool> inserted;
-  inserted = map_students.insert(
-      std::pair<int, Student>(index, Student(index, surname, name)));
-  if (inserted.second == false) {
+    auto it = std::find_if(vec_students.begin(),vec_students.end(),
+                           [index](const Student & student){
+        return student.getIndex() == index;
+ });
+
+  if (it != vec_students.end()) {
     std::cout << "Student z podanym indexem już istnieje" << std::endl;
     std::cin.ignore(15, '\n');
     std::cin.get();
+  }
+  else{
+   vec_students.push_back(Student(index,surname,name));
   }
 }
 
 void DataBase::deleteStudent() {
   showStudents();
-  if (map_students.empty()) {
+  if (vec_students.empty()) {
     std::cin.get();
     return;
   }
@@ -70,12 +75,16 @@ void DataBase::deleteStudent() {
     std::cout << "\nPodany index nie jest liczba!\nPodaj index: ";
     std::cin >> index;
   }
-  std::map<int, Student>::iterator it_delete;
-  it_delete = map_students.find(index);
-  if (it_delete == map_students.end()) {
+  ///tu skonczylas
+  auto it_delete = std::find_if(vec_students.begin(),vec_students.end(),
+                           [index](const Student & student){
+        return student.getIndex() == index;
+ });
+
+  if (it_delete == vec_students.end()) {
     std::cout << "Nie ma takiego indeksu." << std::endl;
   } else {
-    map_students.erase(it_delete);
+    vec_students.erase(it_delete);
     std::cout << "Usunieto studenta o podanym indeksie." << std::endl;
   }
   std::cin.ignore();
@@ -83,7 +92,7 @@ void DataBase::deleteStudent() {
 }
 
 void DataBase::showStudents() const {
-  if (map_students.empty()) {
+  if (vec_students.empty()) {
     std::cout << "Baza studentow jest pusta" << std::endl;
     return;
   }
@@ -92,10 +101,10 @@ void DataBase::showStudents() const {
   std::cout.fill('=');
   std::cout << std::setw(60) << "=" << std::endl;
   std::cout.fill(' ');
-  for (std::map<int, Student>::const_iterator itr = map_students.begin();
-       itr != map_students.end(); itr++) {
-    std::cout << std::left << std::setw(20) << (itr->second).getIndex()
-              << std::setw(20) << (itr->second).getName() << std::setw(20)
-              << (itr->second).getSurname() << std::endl;
+  for (std::vector<Student>::const_iterator itr = vec_students.begin();
+       itr != vec_students.end(); itr++) {
+    std::cout << std::left << std::setw(20) << itr->getIndex()
+              << std::setw(20) << itr->getName() << std::setw(20)
+              << itr->getSurname() << std::endl;
   }
 }

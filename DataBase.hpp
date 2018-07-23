@@ -1,9 +1,11 @@
 #pragma once
 
 #include "Student.hpp"
-#include <map>
+#include <vector>
+#include <algorithm>
+
 class DataBase {
-  std::map<int, Student> map_students;
+  std::vector<Student> vec_students;
 
 public:
   DataBase();
