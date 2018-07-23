@@ -1,21 +1,14 @@
 #pragma once
+#include "Person.hpp"
 #include <string>
 
-class Student {
-private:
+class Student : public Person {
   int m_index;
-  std::string m_surname;
-  std::string m_name;
 
 public:
-  Student(int index, std::string surname, std::string name);
+  Student(int index, std::string name, std::string surname, std::string addres,
+          std::string sex, std::string pesel);
   ~Student();
-
   void setIndex(int index);
-  void setName(std::string name);
-  void setSurname(std::string surname);
-
-  int getIndex() const;
-  std::string getSurname() const;
-  std::string getName() const;
+  int getIndex();
 };

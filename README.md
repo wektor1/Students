@@ -1,3 +1,3 @@
-[![Build Status](https://travis-ci.org/Angan7a/Students.svg?branch=master)](https://travis-ci.org/Angan7a/Students)
+[![Build Status](https://travis-ci.org/wektor1/Students.svg?branch=master)](https://travis-ci.org/wektor1/Students)
 
 # Students
