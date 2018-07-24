@@ -2,7 +2,7 @@ CXX = g++
 STD = 
 #-std=c++14
 
-CXXFLAGS = -Wall -Wpedantic -Wextra -std=c++14
+CXXFLAGS = -Wall -Wpedantic -Wextra -std=c++11
 SRCS = $(wildcard *.cpp)
 OBJS = $(SRCS:.cpp=.o)
 TARGET = student.out
