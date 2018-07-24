@@ -1,7 +1,8 @@
 CXX = g++
-STD = -std=c++14
+STD = 
+#-std=c++14
 
-CXXFLAGS = -Wall -Wpedantic -Wextra
+CXXFLAGS = -Wall -Wpedantic -Wextra -std=c++14
 SRCS = $(wildcard *.cpp)
 OBJS = $(SRCS:.cpp=.o)
 TARGET = student.out
@@ -9,7 +10,7 @@ TARGET = student.out
 .PHONY: all
 all:$(TARGET)
 
-%.o: %.cpp  
+%.o: %.cpp %.hpp 
 	$(CXX) $(CXXFLAGS) $(STD) -c -o $@ $<
 
 $(TARGET): $(OBJS)
