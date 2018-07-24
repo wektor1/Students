@@ -1,11 +1,14 @@
 #pragma once
 
 #include "Student.hpp"
+#include <stdlib.h>
 #include <vector>
-#include <algorithm>
+#include <memory>
+
 
 class DataBase {
-  std::vector<Student> vec_students;
+
+  std::vector<std::shared_ptr<Student>> vec_students;
 
 public:
   DataBase();

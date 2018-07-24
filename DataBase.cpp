@@ -1,8 +1,8 @@
 #include "DataBase.hpp"
 #include <iomanip>
 #include <iostream>
-#include <stdlib.h>
 #include <string>
+#include <algorithm>
 
 DataBase::DataBase() {}
 
@@ -45,8 +45,8 @@ void DataBase::addStudent() {
   }
 
     auto it = std::find_if(vec_students.begin(),vec_students.end(),
-                           [index](const Student & student){
-        return student.getIndex() == index;
+                           [index](const std::shared_ptr<Student> & student){
+        return student->getIndex() == index;
  });
 
   if (it != vec_students.end()) {
@@ -55,7 +55,7 @@ void DataBase::addStudent() {
     std::cin.get();
   }
   else{
-   vec_students.push_back(Student(index,surname,name,"23456","man","fytsuh"));
+   vec_students.push_back(std::make_shared<Student>(index,surname,name,"23456","man","fytsuh"));
   }
 }
 
@@ -77,8 +77,8 @@ void DataBase::deleteStudent() {
   }
   ///tu skonczylas
   auto it_delete = std::find_if(vec_students.begin(),vec_students.end(),
-                           [index](const Student & student){
-        return student.getIndex() == index;
+                           [index](const std::shared_ptr<Student> & student){
+        return student->getIndex() == index;
  });
 
   if (it_delete == vec_students.end()) {
@@ -101,10 +101,10 @@ void DataBase::showStudents() const {
   std::cout.fill('=');
   std::cout << std::setw(60) << "=" << std::endl;
   std::cout.fill(' ');
-  for (std::vector<Student>::const_iterator itr = vec_students.begin();
+  for (std::vector<std::shared_ptr<Student>>::const_iterator itr = vec_students.begin();
        itr != vec_students.end(); itr++) {
-    std::cout << std::left << std::setw(20) << itr->getIndex()
-              << std::setw(20) << itr->getName() << std::setw(20)
-              << itr->getSurname() << std::endl;
+    std::cout << std::left << std::setw(20) << (*itr)->getIndex()
+              << std::setw(20) << (*itr)->getName() << std::setw(20)
+              << (*itr)->getSurname() << std::endl;
   }
 }
