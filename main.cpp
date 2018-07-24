@@ -23,6 +23,9 @@ int main() {
       students_list.showStudents();
       std::cin.get();
       break;
+    case '4':
+      students_list.importData();
+      break;
     }
   }
   return 0;

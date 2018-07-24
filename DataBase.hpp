@@ -1,11 +1,12 @@
 #pragma once
 
-#include "Student.hpp"
+#include "Person.hpp"
+#include <memory>
+#include <stdlib.h>
 #include <vector>
-#include <algorithm>
 
 class DataBase {
-  std::vector<Student> vec_students;
+  std::vector<std::shared_ptr<Person>> vec_persons;
 
 public:
   DataBase();
@@ -14,4 +15,5 @@ public:
   void addStudent();
   void deleteStudent();
   void showStudents() const;
+  void importData();
 };
