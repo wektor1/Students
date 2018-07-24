@@ -16,13 +16,13 @@ public:
 
   //virtual void setIndex(int index) = 0;
   //virtual void setSalary(int salary) = 0;
-  /*
-  virtual void setName(std::string name);
-  virtual void setSurname(std::string surname);
+
+  //virtual void setName(std::string name);
+  //virtual void setSurname(std::string surname);
   virtual void setAddres(std::string addres);
-  virtual void setPesel(std::string pesel);
-  virtual void setSex(std::string sex);
-  */
+  //virtual void setPesel(std::string pesel);
+  //virtual void setSex(std::string sex);
+
 
   virtual int getIndex() = 0;
   virtual int getSalary() = 0;

@@ -9,9 +9,9 @@ Person::Person(std::string surname, std::string name,
 
 Person::~Person() {}
 
-/*
-void Person::setAddres(std::string addres) { m_addres = addres; }
 
+void Person::setAddres(std::string addres) { m_addres = addres; }
+/*
 void Person::setName(std::string name) { m_name = name; }
 
 void Person::setSurname(std::string surname) { m_surname = surname; }

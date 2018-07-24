@@ -8,4 +8,4 @@ Employee::~Employee() {}
 
 int Employee::getSalary() { return m_salary; }
 
-//void Employee::setSalary(int salary) { m_salary = salary; }
+void Employee::setSalary(int salary) { m_salary = salary; }
