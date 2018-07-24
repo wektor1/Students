@@ -55,7 +55,7 @@ void DataBase::addStudent() {
     std::cin.get();
   }
   else{
-   vec_students.push_back(Student(index,surname,name));
+   vec_students.push_back(Student(index,surname,name,"23456","man","fytsuh"));
   }
 }
 

@@ -10,5 +10,5 @@ public:
           std::string sex,std::string addres);
   ~Student();
   //void setIndex(int index);
-  int getIndex();
+  int getIndex() const;
 };

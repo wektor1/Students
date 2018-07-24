@@ -6,6 +6,6 @@ Student:: Student(int index,  std::string surname,std::string name,std::string p
 
 Student::~Student() {}
 
-//void Student::setIndex(int index) { m_index = index; }
 
-int Student::getIndex() { return m_index; }
+
+int Student::getIndex() const { return m_index; }

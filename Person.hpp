@@ -19,16 +19,16 @@ public:
 
   //virtual void setName(std::string name);
   //virtual void setSurname(std::string surname);
-  virtual void setAddres(std::string addres);
+   void setAddres(std::string addres);
   //virtual void setPesel(std::string pesel);
   //virtual void setSex(std::string sex);
 
 
-  virtual int getIndex() = 0;
-  virtual int getSalary() = 0;
-  virtual std::string getSurname() const;
-  virtual std::string getName() const;
-  virtual std::string getAddres() const;
-  virtual std::string getPesel() const;
-  virtual std::string getSex() const;
+  virtual int getIndex() {return 0;}
+  virtual int getSalary() {return 0;}
+   std::string getSurname() const;
+   std::string getName() const;
+   std::string getAddres() const;
+   std::string getPesel() const;
+   std::string getSex() const;
 };
