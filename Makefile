@@ -10,7 +10,7 @@ TARGET = student.out
 .PHONY: all
 all:$(TARGET)
 
-%.o: %.cpp %.hpp 
+%.o: %.cpp  
 	$(CXX) $(CXXFLAGS) $(STD) -c -o $@ $<
 
 $(TARGET): $(OBJS)

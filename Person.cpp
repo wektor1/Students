@@ -1,14 +1,16 @@
 #include "Person.hpp"
 #include <string>
 
-Person::Person(std::string surname, std::string name,
-               std::string pesel,std::string sex,
+Person::Person(std::string surname, std::string name, std::string pesel,
                std::string addres)
-               : m_surname(surname), m_name(name), m_pesel(pesel)
-               , m_sex(sex), m_addres(addres) {}
+    : m_surname(surname), m_name(name), m_pesel(pesel), m_addres(addres) {
+  if (m_name[m_name.size() - 1] == 'a')
+    m_sex = "female";
+  else
+    m_sex = "male";
+}
 
 Person::~Person() {}
-
 
 void Person::setAddres(std::string addres) { m_addres = addres; }
 

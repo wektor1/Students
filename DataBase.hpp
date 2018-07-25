@@ -1,20 +1,23 @@
 #pragma once
 
-#include "Student.hpp"
+#include "Person.hpp"
+#include <memory>
 #include <stdlib.h>
 #include <vector>
-#include <memory>
-
 
 class DataBase {
-
-  std::vector<std::shared_ptr<Student>> vec_students;
+  std::vector<std::shared_ptr<Person>> vec_persons;
 
 public:
   DataBase();
   ~DataBase();
   char showMenu() const;
   void addStudent();
+  void sortByIndex();
+  void sortBySalary();
+  void sortByPesel();
   void deleteStudent();
   void showStudents() const;
+  void importData();
+  void findPerson();
 };
