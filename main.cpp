@@ -55,6 +55,10 @@ int main() {
       break;
     }
     case '5':{
+       students_list.findPerson();
+       break;
+    }
+    case '6':{
       students_list.importData();
       break;
     }

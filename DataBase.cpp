@@ -19,12 +19,13 @@ char DataBase::showMenu() const {
               << "2 - Usun studenta  \n"
               << "3 - Wyswietl wszystkich studentow \n"
               << "4 - Sortuj \n"
-              << "5 - Wczytaj z pliku \n"
+              << "5 - Znajdz osobe \n"
+              << "6 - Wczytaj z pliku \n"
               << "0 - Wyjscie z programu \n"
               << "Co chcesz robic: ";
     std::cin >> t;
     std::cin.ignore(10, '\n');
-  } while (t < '0' || t > '5');
+  } while (t < '0' || t > '6');
   return t;
 }
 
@@ -177,4 +178,38 @@ void DataBase::importData() {
     std::getline(data, status, ',');
   }
   data.close();
+}
+
+
+void DataBase::findPerson(){
+   std::cout<<"Podaj nazwisko lub numer PESEL szukanej osoby: ";
+   std::string data;
+   std::cin>>data;
+
+   auto itr = std::find_if(vec_persons.begin(), vec_persons.end(),
+                        [data](const std::shared_ptr<Person> & person) {
+                        return (person->getSurname() == data || person->getPesel() == data) ;
+                        });
+
+   if (itr == vec_persons.end()) {
+    std::cout << "Nie ma takiej osoby w bazie." << std::endl;
+   } else {
+    std::cout << "Dane szukanej osoby to: " << std::endl;
+    std::cout << std::left << std::setw(13) << "Pesel" << std::setw(20) << "Imie"
+            << std::setw(20) << "Nazwisko" << std::setw(20) << "Adres"
+            << std::setw(10) << "Płeć" << std::setw(10) << "Pensja"
+            << std::setw(10) << "Indeks" << std::endl;
+    std::cout.fill('=');
+    std::cout << std::setw(103) << "=" << std::endl;
+    std::cout.fill(' ');
+    std::cout << std::left << std::setw(13) << (*itr)->getPesel()
+              << std::setw(20) << (*itr)->getName() << std::setw(20)
+              << (*itr)->getSurname() << std::setw(20) << (*itr)->getAddres()
+              << std::setw(10) << (*itr)->getSex() << std::setw(10)
+              << (*itr)->getSalary() << std::setw(10) << (*itr)->getIndex()
+              << std::endl;
+  }
+  getchar();
+  std::cin.get();
+
 }

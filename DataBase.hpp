@@ -19,4 +19,5 @@ public:
   void deleteStudent();
   void showStudents() const;
   void importData();
+  void findPerson();
 };
