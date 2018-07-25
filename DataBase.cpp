@@ -22,11 +22,12 @@ char DataBase::showMenu() const {
               << "4 - Sortuj \n"
               << "5 - Znajdz osobe \n"
               << "6 - Wczytaj z pliku \n"
+              << "7 - Zapisz do pliku \n"
               << "0 - Wyjscie z programu \n"
               << "Co chcesz robic: ";
     std::cin >> t;
     std::cin.ignore(10, '\n');
-  } while (t < '0' || t > '6');
+  } while (t < '0' || t > '7');
   return t;
 }
 
@@ -205,4 +206,28 @@ void DataBase::findPerson() {
   }
   getchar();
   std::cin.get();
+}
+
+void DataBase::saveDataBase() {
+  std::ofstream saveFile("SaveData.csv");
+  for (std::vector<std::shared_ptr<Person>>::const_iterator itr =
+           vec_persons.begin();
+       itr != vec_persons.end(); itr++) {
+    if ((*itr)->getSalary() == 0)
+      saveFile << "s";
+    else
+      saveFile << "e";
+    saveFile << ",";
+    saveFile << (*itr)->getName() << ",";
+    saveFile << (*itr)->getSurname() << ",";
+    saveFile << (*itr)->getPesel() << ",";
+    saveFile << (*itr)->getAddres() << ",";
+    saveFile << (*itr)->getSex() << ",";
+    if ((*itr)->getSalary() == 0) {
+      saveFile << ",";
+      saveFile << (*itr)->getIndex() << "\n";
+    } else {
+      saveFile << (*itr)->getSalary() << ",\n";
+    }
+  }
 }

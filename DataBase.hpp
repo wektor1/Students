@@ -20,4 +20,5 @@ public:
   void showStudents() const;
   void importData();
   void findPerson();
+  void saveDataBase();
 };

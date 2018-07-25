@@ -62,6 +62,10 @@ int main() {
       students_list.importData();
       break;
     }
+    case '7': {
+      students_list.saveDataBase();
+      break;
+    }
     }
   }
   return 0;
