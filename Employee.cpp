@@ -1,8 +1,8 @@
 #include "Employee.hpp"
 
 Employee::Employee(int salary,  std::string surname,std::string name,std::string pesel,
-          std::string sex,std::string addres)
-    : Person(surname,name,pesel,sex,addres),m_salary(salary) {}
+          std::string addres)
+    : Person(surname,name,pesel,addres),m_salary(salary) {}
 
 Employee::~Employee() {}
 

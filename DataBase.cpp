@@ -63,7 +63,7 @@ void DataBase::addStudent() {
     std::cin.get();
   } else {
     vec_persons.push_back(std::make_shared<Student>(index, surname, name,
-                                                    "23456", "man", "fytsuh"));
+                                                    "23456", "fytsuh"));
   }
 }
 
@@ -169,10 +169,10 @@ void DataBase::importData() {
       index = std::stoi(str_index);
     if (status == "s") {
       vec_persons.push_back(
-          std::make_shared<Student>(index, surname, name, pesel, sex, addres));
+          std::make_shared<Student>(index, surname, name, pesel,addres));
     } else {
       vec_persons.push_back(std::make_shared<Employee>(salary, surname, name,
-                                                       pesel, sex, addres));
+                                                       pesel,addres));
     }
     std::getline(data, status, ',');
   }

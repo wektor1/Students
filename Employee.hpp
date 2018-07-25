@@ -7,7 +7,7 @@ class Employee : public Person {
 
 public:
   Employee(int salary,std::string surname,std::string name,std::string pesel,
-          std::string sex,std::string addres);
+          std::string addres);
   ~Employee();
   void setSalary(int salary);
   int getSalary();

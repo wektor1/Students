@@ -10,7 +10,7 @@ protected:
   std::string m_addres;
 
 public:
-  Person(std::string surname, std::string name, std::string pesel,std::string sex, std::string addres);
+  Person(std::string surname, std::string name, std::string pesel, std::string addres);
 
   virtual ~Person();
 
