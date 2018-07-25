@@ -13,6 +13,9 @@ public:
   ~DataBase();
   char showMenu() const;
   void addStudent();
+  void sortByIndex();
+  void sortBySalary();
+  void sortByPesel();
   void deleteStudent();
   void showStudents() const;
   void importData();

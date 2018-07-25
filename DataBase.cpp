@@ -18,12 +18,13 @@ char DataBase::showMenu() const {
     std::cout << "1 - Dodaj studenta  \n"
               << "2 - Usun studenta  \n"
               << "3 - Wyswietl wszystkich studentow \n"
-              << "4 - Wczytaj z pliku\n"
+              << "4 - Sortuj \n"
+              << "5 - Wczytaj z pliku \n"
               << "0 - Wyjscie z programu \n"
               << "Co chcesz robic: ";
     std::cin >> t;
     std::cin.ignore(10, '\n');
-  } while (t < '0' || t > '4');
+  } while (t < '0' || t > '5');
   return t;
 }
 
@@ -64,6 +65,28 @@ void DataBase::addStudent() {
     vec_persons.push_back(std::make_shared<Student>(index, surname, name,
                                                     "23456", "man", "fytsuh"));
   }
+}
+
+
+void DataBase::sortByIndex()
+{
+    std::sort(begin(vec_persons), end(vec_persons), [](const std::shared_ptr<Person> & lhs, const std::shared_ptr<Person> & rhs){
+        return lhs->getIndex() < rhs->getIndex();
+    });
+}
+
+void DataBase::sortBySalary()
+{
+    std::sort(begin(vec_persons), end(vec_persons), [](const std::shared_ptr<Person> & lhs, const std::shared_ptr<Person> & rhs){
+        return lhs->getSalary() < rhs->getSalary();
+    });
+}
+
+void DataBase::sortByPesel()
+{
+    std::sort(begin(vec_persons), end(vec_persons), [](const std::shared_ptr<Person> & lhs, const std::shared_ptr<Person> & rhs){
+        return lhs->getPesel() < rhs->getPesel();
+    });
 }
 
 void DataBase::deleteStudent() {
