@@ -9,6 +9,7 @@ public:
   Student(int index, std::string surname, std::string name, std::string pesel,
           std::string addres);
   ~Student();
-  // void setIndex(int index);
+  void setIndex(int index);
   int getIndex();
+  void setIndexOrSalary(int value) { setIndex(value); }
 };

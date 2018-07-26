@@ -10,16 +10,18 @@ protected:
   std::string m_addres;
 
 public:
-  Person(std::string surname, std::string name, std::string pesel, std::string addres);
+  Person(std::string surname, std::string name, std::string pesel,
+         std::string addres);
 
-   virtual ~Person();
+  virtual ~Person();
 
-   void setAddres(std::string addres);
-   virtual int getIndex() {return 0;}
-   virtual int getSalary() {return 0;}
-   std::string getSurname() const;
-   std::string getName() const;
-   std::string getAddres() const;
-   std::string getPesel() const;
-   std::string getSex() const;
+  void setAddres(std::string addres);
+  virtual int getIndex() { return 0; }
+  virtual int getSalary() { return 0; }
+  std::string getSurname() const;
+  std::string getName() const;
+  std::string getAddres() const;
+  std::string getPesel() const;
+  std::string getSex() const;
+  virtual void setIndexOrSalary(int value) = 0;
 };

@@ -1,6 +1,7 @@
 #include "DataBase.hpp"
 #include "Employee.hpp"
 #include "Student.hpp"
+#include "optionsMenu.hpp"
 #include <algorithm>
 #include <algorithm>
 #include <fstream>
@@ -23,11 +24,12 @@ char DataBase::showMenu() const {
               << "5 - Znajdz osobe \n"
               << "6 - Wczytaj z pliku \n"
               << "7 - Zapisz do pliku \n"
+              << "8 - Modyfikuj dane \n"
               << "0 - Wyjscie z programu \n"
               << "Co chcesz robic: ";
     std::cin >> t;
     std::cin.ignore(10, '\n');
-  } while (t < '0' || t > '7');
+  } while (t < '0' || t > '8');
   return t;
 }
 
@@ -230,4 +232,49 @@ void DataBase::saveDataBase() {
       saveFile << (*itr)->getSalary() << ",\n";
     }
   }
+}
+
+void DataBase::modifyData() {
+  std::string *p_options(
+      new std::string[3]{"Wybierz co chcesz modyfikować:", "Adres", "Zarobki"});
+  int size = 3;
+  int selected_option = optionsMenu(size, p_options);
+  showStudents();
+  std::string pesel;
+  std::cout << "Podaj pesel osoby do modyfikacji: ";
+  std::cin >> pesel;
+  auto it_modify = std::find_if(vec_persons.begin(), vec_persons.end(),
+                                [pesel](const std::shared_ptr<Person> person) {
+                                  return person->getPesel() == pesel;
+                                });
+  std::cin.ignore();
+  if (it_modify != vec_persons.end()) {
+    if (selected_option == 1) {
+      std::cout << "Podaj adres: ";
+      std::string addres;
+      std::cin >> addres;
+      (*it_modify)->setAddres(addres);
+    } else {
+      if ((*it_modify)->getSalary() != 0) {
+        std::cout << "Podaj nową wartość zarobków: ";
+        int salary;
+        std::cin >> salary;
+        while (!std::cin || salary < 0) {
+          std::cin.clear();
+          std::cin.sync();
+          std::cin.ignore(15, '\n');
+          std::cout << "\nPodany kwota jest niepoprawna!\nPodaj kwote: ";
+          std::cin >> salary;
+        }
+        (*it_modify)->setIndexOrSalary(salary);
+      } else {
+        std::cout << "Studentowi się nie płaci!\n";
+        std::cin.get();
+      }
+    }
+  } else {
+    std::cout << "Nie ma takiego peselu!\n";
+    std::cin.get();
+  }
+  delete[] p_options;
 }

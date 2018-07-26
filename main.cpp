@@ -66,6 +66,10 @@ int main() {
       students_list.saveDataBase();
       break;
     }
+    case '8': {
+      students_list.modifyData();
+      break;
+    }
     }
   }
   return 0;
