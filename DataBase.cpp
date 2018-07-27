@@ -235,10 +235,9 @@ void DataBase::saveDataBase() {
 }
 
 void DataBase::modifyData() {
-  std::string *p_options(
-      new std::string[3]{"Wybierz co chcesz modyfikować:", "Adres", "Zarobki"});
+  std::string options[3]{"Wybierz co chcesz modyfikować:", "Adres", "Zarobki"};
   int size = 3;
-  int selected_option = optionsMenu(size, p_options);
+  int selected_option = optionsMenu(size, options);
   showStudents();
   std::string pesel;
   std::cout << "Podaj pesel osoby do modyfikacji: ";
@@ -276,5 +275,4 @@ void DataBase::modifyData() {
     std::cout << "Nie ma takiego peselu!\n";
     std::cin.get();
   }
-  delete[] p_options;
 }
