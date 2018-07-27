@@ -19,7 +19,7 @@ int main() {
       break;
     }
     case '2': {
-      students_list.deleteStudent();
+      students_list.deletePerson();
       break;
     }
     case '3': {

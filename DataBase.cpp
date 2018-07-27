@@ -18,7 +18,7 @@ char DataBase::showMenu() const {
   do {
     system("clear");
     std::cout << "1 - Dodaj studenta  \n"
-              << "2 - Usun studenta  \n"
+              << "2 - Usun osobę \n"
               << "3 - Wyswietl wszystkich studentow \n"
               << "4 - Sortuj \n"
               << "5 - Znajdz osobe \n"
@@ -92,33 +92,33 @@ void DataBase::sortByPesel() {
             });
 }
 
-void DataBase::deleteStudent() {
+void DataBase::deletePerson() {
   showStudents();
   if (vec_persons.empty()) {
     std::cin.get();
     return;
   }
-  std::cout << "Podaj numer indeksu studenta: ";
-  int index;
-  std::cin >> index;
+  std::cout << "Podaj numer PESEL osoby: ";
+  std::string pesel;
+  std::cin >> pesel;
   while (!std::cin) {
     std::cin.clear();
     std::cin.sync();
     std::cin.ignore(15, '\n');
-    std::cout << "\nPodany index nie jest liczba!\nPodaj index: ";
-    std::cin >> index;
+    std::cout << "\nPodany PESEL nie jest liczba!\nPodaj index: ";
+    std::cin >> pesel;
   }
-  /// tu skonczylas
+
   auto it_delete = std::find_if(vec_persons.begin(), vec_persons.end(),
-                                [index](const std::shared_ptr<Person> student) {
-                                  return student->getIndex() == index;
+                                [pesel](const std::shared_ptr<Person> person) {
+                                  return person->getPesel() == pesel;
                                 });
 
   if (it_delete == vec_persons.end()) {
-    std::cout << "Nie ma takiego indeksu." << std::endl;
+    std::cout << "Nie ma takiego numeru PESEL." << std::endl;
   } else {
     vec_persons.erase(it_delete);
-    std::cout << "Usunieto studenta o podanym indeksie." << std::endl;
+    std::cout << "Usunieto osobę o podanym numerze PESEL." << std::endl;
   }
   std::cin.ignore();
   std::cin.get();

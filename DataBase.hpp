@@ -16,7 +16,7 @@ public:
   void sortByIndex();
   void sortBySalary();
   void sortByPesel();
-  void deleteStudent();
+  void deletePerson();
   void showStudents() const;
   void importData();
   void findPerson();
