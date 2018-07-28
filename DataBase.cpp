@@ -17,7 +17,7 @@ char DataBase::showMenu() const {
   char t = '-';
   do {
     system("clear");
-    std::cout << "1 - Dodaj studenta  \n"
+    std::cout << "1 - Dodaj osobę  \n"
               << "2 - Usun osobę \n"
               << "3 - Wyswietl wszystkich studentow \n"
               << "4 - Sortuj \n"
@@ -33,29 +33,51 @@ char DataBase::showMenu() const {
   return t;
 }
 
-void DataBase::addStudent() {
-  int index;
-  std::string name, surname;
-  while (name.empty()) {
-    std::cout << "Podaj imie studenta: ";
+void DataBase::addPerson() {
+  int indexOrSalary,role;
+  std::string name, surname,pesel,addres;
+
+   while (pesel.empty()) {
+    std::cout << "Podaj numer PESEL osoby: ";
+    std::getline(std::cin, pesel);
+  }
+  auto it = std::find_if(vec_persons.begin(), vec_persons.end(),
+                         [pesel](const std::shared_ptr<Person> person) {
+                           return person->getPesel() == pesel;
+                         });
+
+  if (it != vec_persons.end()) {
+    std::cout << "Osoba z podanym numerem PESEL już istnieje" << std::endl;
+    std::cin.ignore(15, '\n');
+    std::cin.get();
+  } else {
+     while (name.empty()) {
+    std::cout << "Podaj imię osoby: ";
     std::getline(std::cin, name);
   }
   while (surname.empty()) {
-    std::cout << "Podaj nazwisko studenta: ";
+    std::cout << "Podaj nazwisko osoby: ";
     std::getline(std::cin, surname);
   }
-  std::cout << "Podaj index: ";
-  std::cin >> index;
-  while (!std::cin || index < 0) {
+   while (addres.empty()) {
+    std::cout << "Podaj adres oboby: ";
+    std::getline(std::cin, addres);
+  }
+  std::cout<<"Jezeli osoba, ktora wprowadzasz jest studentem wybierz 0, jesli jest pracownikiem - 1\n";
+  std::cin>>role;
+  if(role==0){
+     std::cout << "Podaj index: ";
+  std::cin >> indexOrSalary;
+  while (!std::cin || indexOrSalary < 0) {
     std::cin.clear();
     std::cin.sync();
     std::cin.ignore(15, '\n');
     std::cout << "\nPodany index jest niepoprawny!\nPodaj index: ";
-    std::cin >> index;
+    std::cin >> indexOrSalary;
   }
   auto it = std::find_if(vec_persons.begin(), vec_persons.end(),
-                         [index](const std::shared_ptr<Person> student) {
-                           return student->getIndex() == index;
+                         [indexOrSalary](const std::shared_ptr<Person> student) {
+                           return student->getIndex() == indexOrSalary;
                          });
 
   if (it != vec_persons.end()) {
@@ -64,8 +86,23 @@ void DataBase::addStudent() {
     std::cin.get();
   } else {
     vec_persons.push_back(
-        std::make_shared<Student>(index, surname, name, "23456", "fytsuh"));
+        std::make_shared<Student>(indexOrSalary, surname, name, pesel,addres));
   }
+  }else{
+     std::cout << "Podaj zarobki: ";
+  std::cin >> indexOrSalary;
+  while (!std::cin || indexOrSalary < 0) {
+    std::cin.clear();
+    std::cin.sync();
+    std::cin.ignore(15, '\n');
+    std::cout << "\nPodane zarobki da niepoprawne\nPodaj zarobki: ";
+    std::cin >> indexOrSalary;
+  }
+    vec_persons.push_back(
+        std::make_shared<Employee>(indexOrSalary, surname, name, pesel, addres));
+  }
+  }
+
 }
 
 void DataBase::sortByIndex() {

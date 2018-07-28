@@ -12,7 +12,7 @@ public:
   DataBase();
   ~DataBase();
   char showMenu() const;
-  void addStudent();
+  void addPerson();
   void sortByIndex();
   void sortBySalary();
   void sortByPesel();

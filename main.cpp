@@ -15,7 +15,7 @@ int main() {
       break;
     }
     case '1': {
-      students_list.addStudent();
+      students_list.addPerson();
       break;
     }
     case '2': {
