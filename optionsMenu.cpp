@@ -7,7 +7,7 @@
 int optionsMenu(int number_of_lines, std::string *options) {
   char c;
   int line = 1, loop = 1;
-  //std::cin.ignore(15,'\n');
+  // std::cin.ignore(15,'\n');
   while (loop) {
     system("clear");
 
@@ -29,7 +29,7 @@ int optionsMenu(int number_of_lines, std::string *options) {
 void changeLine(char c, int &line, int &loop, int number_of_lines) {
   if (c == 65 && line > 1)
     line--;
-  if (c == 66 && line < number_of_lines-1)
+  if (c == 66 && line < number_of_lines - 1)
     line++;
   if (c == 10)
     loop = 0;

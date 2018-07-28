@@ -24,7 +24,7 @@ int main() {
     }
     case 3: {
       students_list.showStudents();
-      std::cin.ignore(30,'\n');
+      std::cin.ignore(30, '\n');
       break;
     }
     case 4: {
