@@ -12,25 +12,19 @@
 DataBase::DataBase() {}
 
 DataBase::~DataBase() {}
-
-char DataBase::showMenu() const {
-  char t = '-';
-  do {
-    system("clear");
-    std::cout << "1 - Dodaj osobę  \n"
-              << "2 - Usun osobę \n"
-              << "3 - Wyswietl wszystkich studentow \n"
-              << "4 - Sortuj \n"
-              << "5 - Znajdz osobe \n"
-              << "6 - Wczytaj z pliku \n"
-              << "7 - Zapisz do pliku \n"
-              << "8 - Modyfikuj dane \n"
-              << "0 - Wyjscie z programu \n"
-              << "Co chcesz robic: ";
-    std::cin >> t;
-    std::cin.ignore(10, '\n');
-  } while (t < '0' || t > '8');
-  return t;
+int size = 10;
+int DataBase::showMenu() const {
+    std::string options[]={"Wybierz opcję:"
+                           ,"1 - Dodaj osobę"
+              ,"2 - Usun osobę"
+              ,"3 - Wyswietl wszystkich studentow"
+              ,"4 - Sortuj"
+              ,"5 - Znajdz osobe"
+              ,"6 - Wczytaj z pliku"
+              ,"7 - Zapisz do pliku"
+              ,"8 - Modyfikuj dane"
+              ,"9 - Wyjscie z programu"};
+  return optionsMenu(size,options);
 }
 
 void DataBase::addPerson() {
@@ -60,12 +54,12 @@ void DataBase::addPerson() {
     std::getline(std::cin, surname);
   }
    while (addres.empty()) {
-    std::cout << "Podaj adres oboby: ";
+    std::cout << "Podaj adres osoby: ";
     std::getline(std::cin, addres);
   }
-  std::cout<<"Jezeli osoba, ktora wprowadzasz jest studentem wybierz 0, jesli jest pracownikiem - 1\n";
-  std::cin>>role;
-  if(role==0){
+  std::string options[]={"Wybierz osobę do wprowadzenia:","Student","Pracownik"};
+  role=optionsMenu(3,options);
+  if(role==1){
      std::cout << "Podaj index: ";
   std::cin >> indexOrSalary;
   while (!std::cin || indexOrSalary < 0) {
@@ -103,6 +97,7 @@ void DataBase::addPerson() {
   }
   }
 
+std::cin.ignore(15,'\n');
 }
 
 void DataBase::sortByIndex() {
@@ -305,11 +300,10 @@ void DataBase::modifyData() {
         (*it_modify)->setIndexOrSalary(salary);
       } else {
         std::cout << "Studentowi się nie płaci!\n";
-        std::cin.get();
       }
     }
   } else {
     std::cout << "Nie ma takiego peselu!\n";
-    std::cin.get();
   }
+  std::cin.ignore(10,'\n');
 }

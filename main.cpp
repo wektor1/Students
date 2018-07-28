@@ -5,29 +5,29 @@
 int main() {
   DataBase students_list;
   int loop = 1;
-  char t = 'm';
+  int t;
   while (loop == 1) {
     t = students_list.showMenu();
     system("clear");
     switch (t) {
-    case '0': {
+    case 9: {
       loop = 0;
       break;
     }
-    case '1': {
+    case 1: {
       students_list.addPerson();
       break;
     }
-    case '2': {
+    case 2: {
       students_list.deletePerson();
       break;
     }
-    case '3': {
+    case 3: {
       students_list.showStudents();
-      std::cin.get();
+      std::cin.ignore(30,'\n');
       break;
     }
-    case '4': {
+    case 4: {
       int choice = 0;
       std::cout << "1 - Sortuj po numerze PESEL  \n"
                 << "2 - Sortuj po indeksie  \n"
@@ -54,19 +54,19 @@ int main() {
       }
       break;
     }
-    case '5': {
+    case 5: {
       students_list.findPerson();
       break;
     }
-    case '6': {
+    case 6: {
       students_list.importData();
       break;
     }
-    case '7': {
+    case 7: {
       students_list.saveDataBase();
       break;
     }
-    case '8': {
+    case 8: {
       students_list.modifyData();
       break;
     }

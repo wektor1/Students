@@ -11,7 +11,7 @@ class DataBase {
 public:
   DataBase();
   ~DataBase();
-  char showMenu() const;
+  int showMenu() const;
   void addPerson();
   void sortByIndex();
   void sortBySalary();
