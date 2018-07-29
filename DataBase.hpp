@@ -22,4 +22,5 @@ public:
   void findPerson();
   void saveDataBase();
   void modifyData();
+  void generateData();
 };

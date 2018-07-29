@@ -10,7 +10,7 @@ int main() {
     t = students_list.showMenu();
     system("clear");
     switch (t) {
-    case 9: {
+    case 10: {
       loop = 0;
       break;
     }
@@ -68,6 +68,10 @@ int main() {
     }
     case 8: {
       students_list.modifyData();
+      break;
+    }
+    case 9: {
+      students_list.generateData();
       break;
     }
     }

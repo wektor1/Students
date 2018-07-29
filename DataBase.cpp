@@ -3,23 +3,29 @@
 #include "Student.hpp"
 #include "optionsMenu.hpp"
 #include <algorithm>
-#include <algorithm>
 #include <fstream>
 #include <iomanip>
 #include <iostream>
+#include <sstream>
 #include <string>
+#include <time.h>
 
 DataBase::DataBase() {}
 
 DataBase::~DataBase() {}
-int size = 10;
+int size = 11;
 int DataBase::showMenu() const {
-  std::string options[] = {
-      "Wybierz opcję:",      "1 - Dodaj osobę",
-      "2 - Usun osobę",      "3 - Wyswietl wszystkich studentow",
-      "4 - Sortuj",          "5 - Znajdz osobe",
-      "6 - Wczytaj z pliku", "7 - Zapisz do pliku",
-      "8 - Modyfikuj dane",  "9 - Wyjscie z programu"};
+  std::string options[] = {"Wybierz opcję:",
+                           "1 - Dodaj osobę",
+                           "2 - Usun osobę",
+                           "3 - Wyswietl wszystkich studentow",
+                           "4 - Sortuj",
+                           "5 - Znajdz osobe",
+                           "6 - Wczytaj z pliku",
+                           "7 - Zapisz do pliku",
+                           "8 - Modyfikuj dane",
+                           "9 - Generuj losowe dane",
+                           "10 - Wyjście z programu"};
   return optionsMenu(size, options);
 }
 
@@ -304,4 +310,91 @@ void DataBase::modifyData() {
     std::cout << "Nie ma takiego peselu!\n";
   }
   std::cin.ignore(10, '\n');
+}
+
+void DataBase::generateData() {
+  srand(time(NULL));
+  std::string s_line;
+  std::stringstream ss_line;
+  std::ifstream random_data("RandomData.csv");
+  std::getline(random_data, s_line, '\n');
+  std::vector<std::string> names;
+  std::vector<std::string> surnames;
+  std::vector<std::string> addreses;
+  std::vector<std::string> pesels;
+  std::vector<int> salaries;
+  std::vector<int> indexies;
+  std::string single_data;
+  std::string category;
+  while (!random_data.eof()) {
+    // std::cout<<s_line<<'\n';
+    ss_line << s_line;
+    // std::cout<<ss_line<<'\n';
+    std::getline(ss_line, category, ',');
+    // std::cout<<category<<" ";
+    if (category == "imie") {
+      // std::getline(line,single_data,',');
+      while (std::getline(ss_line, single_data, ',')) {
+        // std::cout<<single_data<<'\n';
+        names.push_back(single_data);
+        // std::getline(line,single_data,',');
+      }
+    }
+    if (category == "nazwisko") {
+      // std::getline(line,single_data,',');
+      while (std::getline(ss_line, single_data, ',')) {
+        surnames.push_back(single_data);
+        // std::getline(line,single_data,',');
+      }
+    }
+    if (category == "adres") {
+      // std::getline(line,single_data,',');
+      while (std::getline(ss_line, single_data, ',')) {
+        addreses.push_back(single_data);
+        // std::getline(line,single_data,',');
+      }
+    }
+    if (category == "pesel") {
+      // std::getline(line,single_data,',');
+      while (std::getline(ss_line, single_data, ',')) {
+        pesels.push_back(single_data);
+        // std::getline(line,single_data,',');
+      }
+    }
+    if (category == "indeks") {
+      // std::getline(line,single_data,',');
+      while (std::getline(ss_line, single_data, ',')) {
+        indexies.push_back(std::stoi(single_data));
+        // std::getline(line,single_data,',');
+      }
+    }
+    if (category == "wypłata") {
+      // std::getline(line,single_data,',');
+      while (std::getline(ss_line, single_data, ',')) {
+        salaries.push_back(std::stoi(single_data));
+        // std::getline(line,single_data,',');
+      }
+    }
+    category.clear();
+    std::stringstream().swap(ss_line);
+    std::getline(random_data, s_line, '\n');
+  }
+  std::string options[] = {
+      "Wybierz ile pozycji wygenerować:", "1", "2", "3", "4", "5"};
+  int size = 6;
+  int quantity = optionsMenu(size, options);
+  if (rand() % 2 == 0)
+    std::generate_n(vec_persons.end(), quantity, [&] {
+      return std::make_shared<Student>(
+          indexies[rand() % indexies.size()],
+          surnames[rand() % surnames.size()], names[rand() % names.size()],
+          pesels[rand() % pesels.size()], addreses[rand() % addreses.size()]);
+    });
+  else
+    std::generate_n(vec_persons.end(), quantity, [&] {
+      return std::make_shared<Employee>(
+          salaries[rand() % salaries.size()],
+          surnames[rand() % surnames.size()], names[rand() % names.size()],
+          pesels[rand() % pesels.size()], addreses[rand() % addreses.size()]);
+    });
 }
