@@ -1,13 +1,14 @@
 #include "DataBase.hpp"
+#include "optionsMenu.hpp"
 #include <iostream>
 #include <stdlib.h>
 
 int main() {
-  DataBase students_list;
+  DataBase persons_list;
   int loop = 1;
   int t;
   while (loop == 1) {
-    t = students_list.showMenu();
+    t = persons_list.showMenu();
     system("clear");
     switch (t) {
     case 9: {
@@ -15,36 +16,35 @@ int main() {
       break;
     }
     case 1: {
-      students_list.addPerson();
+      persons_list.addPerson();
       break;
     }
     case 2: {
-      students_list.deletePerson();
+      persons_list.deletePerson();
       break;
     }
     case 3: {
-      students_list.showStudents();
+      persons_list.showPersons();
       std::cin.ignore(30, '\n');
       break;
     }
     case 4: {
       int choice = 0;
-      std::cout << "1 - Sortuj po numerze PESEL  \n"
-                << "2 - Sortuj po indeksie  \n"
-                << "3 - Sortuj po zarobkach \n"
-                << "Co chcesz robic: ";
-      std::cin >> choice;
+      std::string options[]={"Wybierz rodzaj sortowania:", "Sortuj po numerze PESEL"
+                ,"Sortuj po indeksie"
+                ,"Sortuj po zarobkach"};
+      choice=optionsMenu(sizeof(options)/sizeof(std::string),options);
       switch (choice) {
       case 1: {
-        students_list.sortByPesel();
+        persons_list.sortByPesel();
         break;
       }
       case 2: {
-        students_list.sortByIndex();
+        persons_list.sortByIndex();
         break;
       }
       case 3: {
-        students_list.sortBySalary();
+        persons_list.sortBySalary();
         break;
       }
       default: {
@@ -55,19 +55,19 @@ int main() {
       break;
     }
     case 5: {
-      students_list.findPerson();
+      persons_list.findPerson();
       break;
     }
     case 6: {
-      students_list.importData();
+      persons_list.importData();
       break;
     }
     case 7: {
-      students_list.saveDataBase();
+      persons_list.saveDataBase();
       break;
     }
     case 8: {
-      students_list.modifyData();
+      persons_list.modifyData();
       break;
     }
     }

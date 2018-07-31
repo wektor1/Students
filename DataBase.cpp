@@ -16,7 +16,7 @@ int size = 10;
 int DataBase::showMenu() const {
   std::string options[] = {
       "Wybierz opcję:",      "1 - Dodaj osobę",
-      "2 - Usun osobę",      "3 - Wyswietl wszystkich studentow",
+      "2 - Usun osobę",      "3 - Wyświetl baze danych",
       "4 - Sortuj",          "5 - Znajdz osobe",
       "6 - Wczytaj z pliku", "7 - Zapisz do pliku",
       "8 - Modyfikuj dane",  "9 - Wyjscie z programu"};
@@ -123,7 +123,7 @@ void DataBase::sortByPesel() {
 }
 
 void DataBase::deletePerson() {
-  showStudents();
+  showPersons();
   if (vec_persons.empty()) {
     std::cin.get();
     return;
@@ -154,7 +154,7 @@ void DataBase::deletePerson() {
   std::cin.get();
 }
 
-void DataBase::showStudents() const {
+void DataBase::showPersons() const {
   if (vec_persons.empty()) {
     std::cout << "Baza studentow jest pusta" << std::endl;
     return;
@@ -268,7 +268,7 @@ void DataBase::modifyData() {
   std::string options[3]{"Wybierz co chcesz modyfikować:", "Adres", "Zarobki"};
   int size = 3;
   int selected_option = optionsMenu(size, options);
-  showStudents();
+  showPersons();
   std::string pesel;
   std::cout << "Podaj pesel osoby do modyfikacji: ";
   std::cin >> pesel;

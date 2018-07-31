@@ -17,7 +17,7 @@ public:
   void sortBySalary();
   void sortByPesel();
   void deletePerson();
-  void showStudents() const;
+  void showPersons() const;
   void importData();
   void findPerson();
   void saveDataBase();
