@@ -327,7 +327,7 @@ void DataBase::randomData() {
     std::cout << "\nBŁĄÐ!\nPodaj ilość nowych wpisów: ";
     std::cin >> quantity;
   }
-  std::cin.ignore();
+  std::cin.ignore(15, '\n');
   int name, surname, addres, pesel, salary, index;
 
   std::vector<std::vector<std::string>> file;
