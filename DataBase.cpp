@@ -362,5 +362,12 @@ void DataBase::randomData() {
           std::stoi(file[4][index]), file[1][surname], file[0][name],
           file[2][pesel], file[3][addres]));
     }
+
+    auto itr = vec_persons.rbegin();
+    if (peselValidator(**itr) == false){
+      vec_persons.pop_back();
+      i--;
+    }
+
   }
 }
