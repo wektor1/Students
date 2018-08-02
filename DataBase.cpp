@@ -213,6 +213,10 @@ void DataBase::importData() {
       vec_persons.push_back(
           std::make_shared<Employee>(salary, surname, name, pesel, addres));
     }
+    auto itr = vec_persons.rbegin();
+    if (peselValidator(**itr) == false){
+    vec_persons.pop_back();
+    }
     std::getline(data, status, ',');
   }
   data.close();
