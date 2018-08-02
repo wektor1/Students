@@ -4,26 +4,30 @@
 #include "optionsMenu.hpp"
 #include <algorithm>
 #include <algorithm>
+#include <cstdlib>
+#include <ctime>
 #include <fstream>
 #include <iomanip>
 #include <iostream>
-#include <string>
 #include <sstream>
-#include <cstdlib>
-#include <ctime>
+#include <string>
 
 DataBase::DataBase() {}
 
 DataBase::~DataBase() {}
 int size = 11;
 int DataBase::showMenu() const {
-  std::string options[] = {
-      "Wybierz opcję:",      "1 - Dodaj osobę",
-      "2 - Usun osobę",      "3 - Wyświetl baze danych",
-      "4 - Sortuj",          "5 - Znajdz osobe",
-      "6 - Wczytaj z pliku", "7 - Zapisz do pliku",
-      "8 - Modyfikuj dane",  "9 - Losowe generowanie osób",
-      "10 - Wyjscie z programu" };
+  std::string options[] = {"Wybierz opcję:",
+                           "1 - Dodaj osobę",
+                           "2 - Usun osobę",
+                           "3 - Wyświetl baze danych",
+                           "4 - Sortuj",
+                           "5 - Znajdz osobe",
+                           "6 - Wczytaj z pliku",
+                           "7 - Zapisz do pliku",
+                           "8 - Modyfikuj dane",
+                           "9 - Losowe generowanie osób",
+                           "10 - Wyjscie z programu"};
   return optionsMenu(size, options);
 }
 
@@ -165,7 +169,7 @@ void DataBase::showPersons() const {
   }
   std::cout << std::left << std::setw(13) << "Pesel" << std::setw(20) << "Imie"
             << std::setw(20) << "Nazwisko" << std::setw(20) << "Adres"
-            << std::setw(10) << "Płeć" << std::setw(10) << "Pensja"
+            << std::setw(10) << "Plec" << std::setw(10) << "Pensja"
             << std::setw(10) << "Indeks" << std::endl;
   std::cout.fill('=');
   std::cout << std::setw(103) << "=" << std::endl;
@@ -310,51 +314,50 @@ void DataBase::modifyData() {
   std::cin.ignore(10, '\n');
 }
 
+void DataBase::randomData() {
+  std::ifstream data("rand.csv");
+  std::string line;
+  std::cout << "Podaj ilość nowych wpisów: ";
+  int quantity;
+  std::cin >> quantity;
+  while (!std::cin) {
+    std::cin.clear();
+    std::cin.sync();
+    std::cin.ignore(15, '\n');
+    std::cout << "\nBŁĄÐ!\nPodaj ilość nowych wpisów: ";
+    std::cin >> quantity;
+  }
+  std::cin.ignore();
+  int name, surname, addres, pesel, salary, index;
 
-void DataBase:: randomData()
-{
-    std::ifstream  data("rand.csv");
-    std::string line;
-    int quantity=20;
-
-    int name,surname,addres,pesel,salary,index;
-
-    std::vector<std::vector<std::string> > file;
-    while(std::getline(data,line))
-    {
-        std::stringstream lineStream(line);
-        std::string cell;
-        std::vector<std::string> oneType;
-        while(std::getline(lineStream,cell,','))
-        {
-            oneType.push_back(cell);
-        }
-
-        file.push_back(oneType);
-    }
-    srand( time( NULL ) );
-
-    for(int i=0;i<quantity;++i){
-      name =( std::rand() % file[0].size() );
-      surname =( std::rand() % file[1].size() );
-      pesel =( std::rand() % file[2].size() );
-      addres =( std::rand() % file[3].size() );
-      if( (std::rand() % 100)%2 == 0 ){
-         salary =( std::rand() % file[5].size() );
-         vec_persons.push_back(std::make_shared<Employee>(std::stoi(file[5][salary]), file[1][surname],
-                                         file[0][name], file[2][pesel], file[3][addres]));
-      }else{
-      index =( std::rand() % file[4].size() );
-         vec_persons.push_back(std::make_shared<Student>(std::stoi(file[4][index]), file[1][surname],
-                                         file[0][name], file[2][pesel], file[3][addres]));
-
-      }
+  std::vector<std::vector<std::string>> file;
+  while (std::getline(data, line)) {
+    std::stringstream lineStream(line);
+    std::string cell;
+    std::vector<std::string> oneType;
+    while (std::getline(lineStream, cell, ',')) {
+      oneType.push_back(cell);
     }
 
+    file.push_back(oneType);
+  }
+  srand(time(NULL));
 
-
-
+  for (int i = 0; i < quantity; ++i) {
+    name = (std::rand() % file[0].size());
+    surname = (std::rand() % file[1].size());
+    pesel = (std::rand() % file[2].size());
+    addres = (std::rand() % file[3].size());
+    if ((std::rand() % 100) % 2 == 0) {
+      salary = (std::rand() % file[5].size());
+      vec_persons.push_back(std::make_shared<Employee>(
+          std::stoi(file[5][salary]), file[1][surname], file[0][name],
+          file[2][pesel], file[3][addres]));
+    } else {
+      index = (std::rand() % file[4].size());
+      vec_persons.push_back(std::make_shared<Student>(
+          std::stoi(file[4][index]), file[1][surname], file[0][name],
+          file[2][pesel], file[3][addres]));
+    }
+  }
 }
-
-
-
