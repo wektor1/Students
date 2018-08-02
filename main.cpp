@@ -11,7 +11,8 @@ int main() {
     t = persons_list.showMenu();
     system("clear");
     switch (t) {
-    case 9: {
+
+    case 10: {
       loop = 0;
       break;
     }
@@ -70,6 +71,12 @@ int main() {
       persons_list.modifyData();
       break;
     }
+        case 9:{
+
+    persons_list.randomData();
+    break;
+    }
+
     }
   }
   return 0;

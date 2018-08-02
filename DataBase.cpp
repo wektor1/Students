@@ -8,18 +8,22 @@
 #include <iomanip>
 #include <iostream>
 #include <string>
+#include <sstream>
+#include <cstdlib>
+#include <ctime>
 
 DataBase::DataBase() {}
 
 DataBase::~DataBase() {}
-int size = 10;
+int size = 11;
 int DataBase::showMenu() const {
   std::string options[] = {
       "Wybierz opcję:",      "1 - Dodaj osobę",
       "2 - Usun osobę",      "3 - Wyświetl baze danych",
       "4 - Sortuj",          "5 - Znajdz osobe",
       "6 - Wczytaj z pliku", "7 - Zapisz do pliku",
-      "8 - Modyfikuj dane",  "9 - Wyjscie z programu"};
+      "8 - Modyfikuj dane",  "9 - Losowe generowanie osób",
+      "10 - Wyjscie z programu" };
   return optionsMenu(size, options);
 }
 
@@ -305,3 +309,52 @@ void DataBase::modifyData() {
   }
   std::cin.ignore(10, '\n');
 }
+
+
+void DataBase:: randomData()
+{
+    std::ifstream  data("rand.csv");
+    std::string line;
+    int quantity=20;
+
+    int name,surname,addres,pesel,salary,index;
+
+    std::vector<std::vector<std::string> > file;
+    while(std::getline(data,line))
+    {
+        std::stringstream lineStream(line);
+        std::string cell;
+        std::vector<std::string> oneType;
+        while(std::getline(lineStream,cell,','))
+        {
+            oneType.push_back(cell);
+        }
+
+        file.push_back(oneType);
+    }
+    srand( time( NULL ) );
+
+    for(int i=0;i<quantity;++i){
+      name =( std::rand() % file[0].size() );
+      surname =( std::rand() % file[1].size() );
+      pesel =( std::rand() % file[2].size() );
+      addres =( std::rand() % file[3].size() );
+      if( (std::rand() % 100)%2 == 0 ){
+         salary =( std::rand() % file[5].size() );
+         vec_persons.push_back(std::make_shared<Employee>(std::stoi(file[5][salary]), file[1][surname],
+                                         file[0][name], file[2][pesel], file[3][addres]));
+      }else{
+      index =( std::rand() % file[4].size() );
+         vec_persons.push_back(std::make_shared<Student>(std::stoi(file[4][index]), file[1][surname],
+                                         file[0][name], file[2][pesel], file[3][addres]));
+
+      }
+    }
+
+
+
+
+}
+
+
+
