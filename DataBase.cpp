@@ -2,7 +2,7 @@
 #include "Employee.hpp"
 #include "Student.hpp"
 #include "optionsMenu.hpp"
-#include <algorithm>
+#include "peselValidator.hpp"
 #include <algorithm>
 #include <cstdlib>
 #include <ctime>
@@ -101,6 +101,9 @@ void DataBase::addPerson() {
       vec_persons.push_back(std::make_shared<Employee>(indexOrSalary, surname,
                                                        name, pesel, addres));
     }
+    auto itr = vec_persons.rbegin();
+    if (peselValidator(**itr) == false)
+      vec_persons.pop_back();
   }
 
   std::cin.ignore(15, '\n');
