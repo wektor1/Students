@@ -31,10 +31,10 @@ int main() {
     }
     case 4: {
       int choice = 0;
-      std::string options[]={"Wybierz rodzaj sortowania:", "Sortuj po numerze PESEL"
-                ,"Sortuj po indeksie"
-                ,"Sortuj po zarobkach"};
-      choice=optionsMenu(sizeof(options)/sizeof(std::string),options);
+      std::string options[] = {"Wybierz rodzaj sortowania:",
+                               "Sortuj po numerze PESEL", "Sortuj po indeksie",
+                               "Sortuj po zarobkach"};
+      choice = optionsMenu(sizeof(options) / sizeof(std::string), options);
       switch (choice) {
       case 1: {
         persons_list.sortByPesel();
@@ -71,12 +71,10 @@ int main() {
       persons_list.modifyData();
       break;
     }
-        case 9:{
-
-    persons_list.randomData();
-    break;
+    case 9: {
+      persons_list.randomData();
+      break;
     }
-
     }
   }
   return 0;
